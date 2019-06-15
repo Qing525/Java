@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljq.mybatis.dao.Test1Dao">
+
+    <resultMap type="com.ljq.mybatis.entity.Test1" id="Test1Map">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="date" column="date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="Test1Map">
+        select
+          id, name, date
+        from test.test1
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="Test1Map">
+        select
+          id, name, date
+        from test.test1
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="Test1Map">
+        select
+          id, name, date
+        from test.test1
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="date != null">
+                and date = #{date}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into test.test1(name, date)
+        values (#{name}, #{date})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update test.test1
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="date != null">
+                date = #{date},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from test.test1 where id = #{id}
+    </delete>
+    <!--批量添加-->
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into test.test1(id,name,date)
+        values
+        <foreach collection="list" item="test1" index="index" separator=",">
+            (#{test1.id,jdbcType=INTEGER} ,#{test1.name, jdbcType=VARCHAR},#{test1.date,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+
+    <delete id="deleteBatch" parameterType="list">
+delete from test.test1 where id in
+                <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+                    #{item.id,jdbcType=INTEGER}
+                </foreach>
+
+    </delete>
+
+
+</mapper>
