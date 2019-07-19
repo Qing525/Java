@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljq.mybatis.dao.EmployeeDao">
+<!--<insert id="save" useGeneratedKeys="true" keyProperty="id">
+   insert into employee(name,dept_id) values ( #{name}, #{dept.id})
+</insert>-->
+    <resultMap id="BaseResultMap" type="com.ljq.mybatis.entity.Employee">
+        <id column="eId" property="id"></id>
+        <result column="eName" property="name"></result>
+        <association property="dept" javaType="com.ljq.mybatis.entity.Dept" >
+            <id column="dId" property="id"></id>
+            <result column="dName" property="name"></result>
+        </association>
+    </resultMap>
+ <select id="queryAll" resultMap="BaseResultMap">
+    select e.id as eId,d.id as dId,e.name as eName,e.dept_id ,d.name as dName from employee e left join dept d
+on d.id=e.dept_id
+ </select>
+</mapper>

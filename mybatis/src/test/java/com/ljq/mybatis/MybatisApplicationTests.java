@@ -1,10 +1,19 @@
 package com.ljq.mybatis;
 
+import com.ljq.mybatis.dao.DeptDao;
+import com.ljq.mybatis.dao.EmployeeDao;
 import com.ljq.mybatis.dao.Test1Dao;
+import com.ljq.mybatis.entity.Dept;
+import com.ljq.mybatis.entity.Employee;
 import com.ljq.mybatis.entity.Test1;
+import com.ljq.mybatis.proxy.MyMapperProxy;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -20,6 +29,11 @@ import java.util.List;
 public class MybatisApplicationTests {
     @Resource
     private Test1Dao test1Dao;
+    @Resource
+    private DeptDao deptDao;
+    @Autowired
+    private EmployeeDao employeeDao;
+
 
     @Test
     public void test() {
@@ -39,16 +53,46 @@ public class MybatisApplicationTests {
         tt.add(t1);
         tt.add(t2);
         tt.add(t3);
-        log.info("生效数量："+test1Dao.insertBatch(tt));
+        log.info("生效数量：" + test1Dao.insertBatch(tt));
 
     }
+
     @Test
-    public void test2(){
+    public void test2() {
 
         List<Test1> list1 = Arrays.asList(new Test1(1), new Test1(2));
 
-        log.info("生效数量："+test1Dao.deleteBatch(list1));
+        log.info("生效数量：" + test1Dao.deleteBatch(list1));
 
     }
 
+    @Test
+    public void test3() throws Exception {
+        SqlSession session = new SqlSessionFactoryBean().getObject().openSession();
+        MyMapperProxy<Test1Dao> myMapper = new MyMapperProxy<>();
+        myMapper.setMapperInterface(Test1Dao.class);
+        myMapper.setSession(session);
+        Test1Dao proxy = myMapper.getProxy();
+        Test1 test1 = proxy.queryById(1);
+
+        System.out.println(test1.getClass());
+    }
+    @Test
+    public void test4(){
+        Dept dept=new Dept();
+        dept.setName("A部");
+        Employee e=new Employee();
+        e.setName("zs");
+        e.setDept(dept);
+        Employee e1=new Employee();
+        e1.setName("ls");
+        e1.setDept(dept);
+        deptDao.save(dept);
+        employeeDao.save(e);
+        employeeDao.save(e1);
+    }
+    @Test
+    public void  List() {
+        employeeDao.queryAll().forEach(System.out::println);
+    }
 }

@@ -31,7 +31,7 @@ public class ReflectDemo1 {
         Method[] declaredMethods = clazz.getDeclaredMethods();
 
 
-        Arrays.stream(declaredFields).forEach(f -> System.out.println(f));
+        Arrays.stream(declaredFields).forEach(System.out::println);
 
 
     }
