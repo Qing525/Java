@@ -5,7 +5,7 @@ package com.ljq;
  * @date : 2019/5/20 16:42
  */
 
-/*.class创建对象的引用时，不会自动初始化该class对象
+/*    .class创建对象的引用时，不会自动初始化该class对象
         Class.forName()会自动初始化该对象*/
 
 public class ReflectDemo {

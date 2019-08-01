@@ -75,7 +75,7 @@ public class TimedTask {
                     e.printStackTrace();
                 }
             } else {
-                //连接断开，会话过期
+                //连接断开，会话过期等
                 System.out.println("toBeMaster 其他状态" + code);
             }
         }, "ctx");

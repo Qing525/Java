@@ -21,7 +21,7 @@ public class ReflectDemo1 {
         Field name = clazz.getDeclaredField("name");
 
         ShareData shareData=new ShareData();
-        //暴力反射，修改访问权限
+        //暴力反射，修改访问权限,可以用在 private 的 filed,method,constructor
         name.setAccessible(true);
 
         name.set(shareData,"zs");

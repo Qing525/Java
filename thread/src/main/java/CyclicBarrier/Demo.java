@@ -7,17 +7,16 @@ import java.util.concurrent.*;
 
 public class Demo {
 
-    static CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
+   private static CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
 
     public static void main(String[] args) {
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("线程-%s").build();
 
         ThreadPoolExecutor pool = new ThreadPoolExecutor(3, 6, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(3), threadFactory, new ThreadPoolExecutor.DiscardOldestPolicy());
 
-        /**
-         *   达到最大线程数时，停止进入
-         *
-         */
+
+        //  达到最大线程数时，停止进入
+
         for (int i = 1; i < 10; i++) {
 
             int finalI = i;

@@ -42,7 +42,7 @@ public class PayOrder {
 
     private String startPay(ZooKeeper zooKeeper, Long orderId) {
         String lockPath = LOCK_PREFIX + orderId;
-        //支付之前加锁 ，创建临时节点
+        //支付之前加锁 ，创建临时无序节点
         try {
             zooKeeper.create(lockPath, "".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
             try {
