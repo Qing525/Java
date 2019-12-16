@@ -46,13 +46,13 @@ public class 寻找两个有序数组的中位数 {
 
         double result = 0;
 
-        int l = (l1 + l2) ;
-        if (l %2 == 0) {
+        int l = (l1 + l2);
+        if (l % 2 == 0) {
 
-            result = (num[l/2 - 1] + num[l/2]) * 1.0 / 2;
+            result = (num[l / 2 - 1] + num[l / 2]) * 1.0 / 2;
         } else {
 
-            result = num[l/2];
+            result = num[l / 2];
         }
 
         return result;

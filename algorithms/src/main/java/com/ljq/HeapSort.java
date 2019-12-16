@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class HeapSort {
     public static void main(String[] args) {
 
-        int[] arr = {4,  6, 8,5, 9};
+        int[] arr = {4, 6, 8, 5, 9};
         adjustHeap(arr, 1, arr.length);
 
         System.out.println(Arrays.toString(arr));
@@ -44,9 +44,9 @@ public class HeapSort {
             }
 
             //右节点》 父节点   交换
-            if (arr[ j ] > temp) {
-                arr[i] = arr[j ];
-               i=j;
+            if (arr[j] > temp) {
+                arr[i] = arr[j];
+                i = j;
             } else {
                 break;
             }

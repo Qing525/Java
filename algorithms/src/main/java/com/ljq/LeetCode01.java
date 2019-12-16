@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public class LeetCode01 {
     public static void main(String[] args) {
-  int []nums={2,7,5,4,10};
+        int[] nums = {2, 7, 5, 4, 10};
         Arrays.stream(twoSum(nums, 9)).forEach(i -> System.out.println(i));
     }
 
