@@ -14,25 +14,25 @@ import java.util.UUID;
  */
 @Component
 public class Produce {
-       @Autowired
+    @Autowired
     JmsMessagingTemplate jmsMessagingTemplate;
-     @Autowired
+    @Autowired
     Queue queue;
 
-     public void produceMsg(){
+    public void produceMsg() {
 
-         jmsMessagingTemplate.convertAndSend(queue,"**********"+ UUID.randomUUID().toString().substring(0,6));
-     }
+        jmsMessagingTemplate.convertAndSend(queue, "**********" + UUID.randomUUID().toString().substring(0, 6));
+    }
 
     /**
      * 间隔定投
      */
-     @Scheduled(fixedDelay = 3000)
-     public void produceSc(){
+    @Scheduled(fixedDelay = 3000)
+    public void produceSc() {
 
-         jmsMessagingTemplate.convertAndSend(queue,"**********"+ UUID.randomUUID().toString().substring(0,6));
+        jmsMessagingTemplate.convertAndSend(queue, "**********" + UUID.randomUUID().toString().substring(0, 6));
 
-         System.out.println("**********"+ UUID.randomUUID().toString().substring(0,6));
-     }
+        System.out.println("**********" + UUID.randomUUID().toString().substring(0, 6));
+    }
 
 }

@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2019/7/24 10:59
  **/
 public class TimedTask {
-    private static final String CONNENT = "94.191.56.73:2181,94.191.56.73:2182,94.191.56.73:2183";
+    private static final String CONNENT = "94.191.56.73:2182,94.191.56.73:2183,94.191.56.73:2184";
     private static final String PATH = "/timedTask/lock";
     private String machineName;
 
