@@ -25,9 +25,7 @@ public class DoubleCheckSingleton {
     public static void main(String[] args) {
 
         for (int i = 0; i < 10; i++) {
-            new Thread(() -> {
-                getInstance();
-            }, String.valueOf(i)).start();
+            new Thread(DoubleCheckSingleton::getInstance, String.valueOf(i)).start();
         }
     }
 }

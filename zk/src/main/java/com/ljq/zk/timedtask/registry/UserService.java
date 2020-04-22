@@ -11,8 +11,8 @@ import java.util.concurrent.CountDownLatch;
  * @date 2019/7/25 10:15
  **/
 public class UserService {
-    private static final String USER_PATH = "/service/user";
-    private static final String ORDER_PATH = "/service/order";
+    private static final String USER_PATH = "/com.ljq.mybatis.service/user";
+    private static final String ORDER_PATH = "/com.ljq.mybatis.service/order";
     private static final String CLUSTER = "94.191.56.73:2181,94.191.56.73:2182,94.191.56.73:2183";
 
     public void start(String ip) {

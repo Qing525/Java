@@ -1,0 +1,12 @@
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.ljq.mybatisplus.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-prefix: mp
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0

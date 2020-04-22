@@ -11,7 +11,7 @@
     <groupId>com</groupId>
     <artifactId>proxy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ljq</name>
+    <name>proxy</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -50,6 +50,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
         </dependency>
     </dependencies>
 
